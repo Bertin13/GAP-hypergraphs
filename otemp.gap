@@ -61,3 +61,31 @@ InstallMethod(IsUniform,"for hypergraphs",
         fi;
     end);
 
+DeclareOperation("IsSimpleH",[HCategory]);
+
+InstallMethod(IsSimpleH,"for hypergraphs",
+              [HCategory],
+     function( H )
+         local E, e, i, j, k, isit;
+         E := H!.hyperedges;
+         k := Length(E);
+         i := 1;
+         isit := true;
+         while i < k and isit do
+             i := i+1;
+             for j in [i+1..k] do
+                 if Intersection(E[i],E[j])=E[i] or Intersection(E[i],E[j])=E[j] then                        
+                     isit := false;
+                 else
+                     isit := true;
+                 fi;
+             od;
+         od;
+         if isit then
+             Print("It's a simple hypergraph \n");
+             return;
+         else
+             Print("Is not a simple hipergraph \n");
+         fi;
+     end);
+
