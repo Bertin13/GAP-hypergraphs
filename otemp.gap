@@ -70,17 +70,18 @@ InstallMethod(IsUniform,"for hypergraphs",
 
 InstallMethod(IsSimple, "for hypergraphs", [HCategory],
     function( H )
-        local Ed, isit, n, i, j, k, combs;
+        local Ed, isit, n, i, j;
         Ed := H!.hyperedges;
         n := Length(Ed);
         isit := true;
         i := 0;
-        combs := Combinations([1..n], 2);
-        while i < Binomial(n,2) and isit do
+        while i < n and isit do
             i := i+1;
-            j := combs[i][1];
-            k := combs[i][2];
-            isit := not(IsSubset(Ed[j], Ed[k]) or IsSubset(Ed[k], Ed[j]));
+            j := i;
+            while j < n and isit do
+                j := j+1;
+                isit := not(IsSubset(Ed[i], Ed[j]) or IsSubset(Ed[j], Ed[i]));
+            od;
         od;
         return isit;
     end);
