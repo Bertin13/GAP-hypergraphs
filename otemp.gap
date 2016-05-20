@@ -92,4 +92,32 @@ end;
 # HDualHypergraph := function( H )
 #     local E, V;
     
+DeclareOperation("IsSimpleH",[HCategory]);
+
+InstallMethod(IsSimpleH,"for hypergraphs",
+              [HCategory],
+     function( H )
+         local E, e, i, j, k, isit;
+         E := H!.hyperedges;
+         k := Length(E);
+         i := 1;
+         isit := true;
+         while i < k and isit do
+              for j in [i+1..k] do
+                 if Intersection(E[i],E[j])=E[i] or Intersection(E[i],E[j])=E[j] then                        
+                     isit := false;
+                 else
+                     isit := true;
+                 fi;
+             od;
+             i := i+1;
+         od;
+         if isit then
+             Print("It's a simple hypergraph \n");
+             return;
+         else
+             Print("Is not a simple hypergraph \n");
+         fi;
+     end);
+
 
