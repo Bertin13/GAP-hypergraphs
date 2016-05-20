@@ -4,9 +4,16 @@ HFamily := NewFamily("HHypergraphsFamily");
 
 HType := NewType(HFamily, HCategory);
 
-HRep := NewRepresentation("HRep",IsAttributeStoringRep,["vertices","hyperedges"]);
+HRep := NewRepresentation("HRep",
+                          IsComponentObjectRep and IsAttributeStoringRep,
+                          ["vertices", "hyperedges"]);
 
-HHypergraph := function (verts,hedges)
+DeclareOperation("HHypergraph", [IsList, IsList]);
+
+InstallMethod( HHypergraph,
+"method to create hypergraphs",
+[IsList, IsList],
+function (verts,hedges)
     local ve, hed, isvalid, i;
     ve := Set(verts);
     hed := List(hedges,x->Set(x));
@@ -24,7 +31,7 @@ HHypergraph := function (verts,hedges)
         Print("Error. Hyperedge not contained in set of vertices.\n");
         return;
     fi;
-end;
+end);
 
 G:=HHypergraph([1,2,3,4],[[1,2,3],[1,2,4]]);
 
@@ -60,4 +67,29 @@ InstallMethod(IsUniform,"for hypergraphs",
             Print("It's not a uniform hypergraph.\n");
         fi;
     end);
+
+InstallMethod(IsSimple, "for hypergraphs", [HCategory],
+    function( H )
+        local Ed, isit, n, i, j, k, combs;
+        Ed := H!.hyperedges;
+        n := Length(Ed);
+        isit := true;
+        i := 0;
+        combs := Combinations([1..n], 2);
+        while i < Binomial(n,2) and isit do
+            i := i+1;
+            j := combs[i][1];
+            k := combs[i][2];
+            isit := not(IsSubset(Ed[j], Ed[k]) or IsSubset(Ed[k], Ed[j]));
+        od;
+        return isit;
+    end);
+
+HCompleteHypergraph := function (n, r)
+    return HHypergraph([1..n], Combinations([1..n], r));
+end;
+
+# HDualHypergraph := function( H )
+#     local E, V;
+    
 
