@@ -1,15 +1,3 @@
-HCategory := NewCategory("HHypergraphs", IsRecord);
-
-HFamily := NewFamily("HHypergraphsFamily");
-
-HType := NewType(HFamily, HCategory);
-
-HRep := NewRepresentation("HRep",
-                          IsComponentObjectRep and IsAttributeStoringRep,
-                          ["vertices", "hyperedges"]);
-
-DeclareOperation("HHypergraph", [IsList, IsList]);
-
 InstallMethod( HHypergraph,
 "method to create hypergraphs",
 [IsList, IsList],
@@ -33,24 +21,26 @@ function (verts,hedges)
     fi;
 end);
 
-G:=HHypergraph([1,2,3,4],[[1,2,3],[1,2,4]]);
-
 InstallMethod(PrintObj,"for hypergraphs",
-  [HCategory],
+  [IsHHypergraph],
   function(G)
   Print("Hypergraph with vertices ",G!.vertices," and edges ",G!.hyperedges,"\n");
 end);
 
 InstallMethod(ViewObj,"for hypergraphs",
-  [HCategory],
+  [IsHHypergraph],
 function(G)
   Print("Hypergraph with vertices ",G!.vertices," and edges ",G!.hyperedges);
 end);
 
-DeclareOperation("IsUniform",[HCategory]);
+InstallMethod(Vertices," for hypergraphs",
+              [IsHHypergraph],
+    function( H )
+        return H!.vertices;
+    end);
 
 InstallMethod(IsUniform,"for hypergraphs",
-              [HCategory],
+              [IsHHypergraph],
     function( H )
         local E,e, i, j, k, aux,r, isit;
         E := H!.hyperedges;
@@ -68,7 +58,7 @@ InstallMethod(IsUniform,"for hypergraphs",
         fi;
     end);
 
-InstallMethod(IsSimple, "for hypergraphs", [HCategory],
+InstallMethod(IsSimple, "for hypergraphs", [IsHHypergraph],
     function( H )
         local Ed, isit, n, i, j;
         Ed := H!.hyperedges;
@@ -89,36 +79,3 @@ InstallMethod(IsSimple, "for hypergraphs", [HCategory],
 HCompleteHypergraph := function (n, r)
     return HHypergraph([1..n], Combinations([1..n], r));
 end;
-
-# HDualHypergraph := function( H )
-#     local E, V;
-    
-DeclareOperation("IsSimpleH",[HCategory]);
-
-InstallMethod(IsSimpleH,"for hypergraphs",
-              [HCategory],
-     function( H )
-         local E, e, i, j, k, isit;
-         E := H!.hyperedges;
-         k := Length(E);
-         i := 1;
-         isit := true;
-         while i < k and isit do
-              for j in [i+1..k] do
-                 if Intersection(E[i],E[j])=E[i] or Intersection(E[i],E[j])=E[j] then                        
-                     isit := false;
-                 else
-                     isit := true;
-                 fi;
-             od;
-             i := i+1;
-         od;
-         if isit then
-             Print("It's a simple hypergraph \n");
-             return;
-         else
-             Print("Is not a simple hypergraph \n");
-         fi;
-     end);
-
-
