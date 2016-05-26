@@ -1,0 +1,20 @@
+  
+  
+  [1XIndex[101X
+  
+  [2XDiameter[102X  2.3-4
+  [2XGirth[102X  2.3-5
+  [2XHCompleteHypergraph[102X  2.1-2
+  [2XHDistance[102X  2.3-3
+  [2XHDistancesFrom[102X  2.3-2
+  [2XHFano[102X  3.1-1
+  [2XHHypergraph[102X  2.1-1
+  [2XHNeighborhood[102X  2.3-1
+  [2XHQuad[102X  3.1-2
+  [2XHRandomUniformHypergraph[102X  2.1-3
+  [2XHRemovedEdge[102X  2.1-4
+  [2XIsSimple[102X  2.2-2
+  [2XIsUniform[102X  2.2-1
+  
+  
+  -------------------------------------------------------

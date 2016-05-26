@@ -1,0 +1,18 @@
+  
+  [1X3 [33X[0;0YLibrary of Hypergraphs[133X[101X
+  
+  
+  [1X3.1 [33X[0;0YHypergraphs[133X[101X
+  
+  [1X3.1-1 HFano[101X
+  
+  [29X[2XHFano[102X[32X global variable
+  
+  [33X[0;0YThe Fano hypergraph.[133X
+  
+  [1X3.1-2 HQuad[101X
+  
+  [29X[2XHQuad[102X[32X global variable
+  
+  [33X[0;0YThe hypergraph of the smallest generalized quadrangle.[133X
+  

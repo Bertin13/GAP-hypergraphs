@@ -1,0 +1,86 @@
+  
+  [1X2 [33X[0;0YBasic Constructions[133X[101X
+  
+  
+  [1X2.1 [33X[0;0YHypergraphs[133X[101X
+  
+  [1X2.1-1 HHypergraph[101X
+  
+  [29X[2XHHypergraph[102X( [3XV[103X, [3XEd[103X ) [32X method
+  
+  [33X[0;0YReturns the hypergraph object, with vertices [3XV[103X and hyperedges [3XEd[103X.[133X
+  
+  [1X2.1-2 HCompleteHypergraph[101X
+  
+  [29X[2XHCompleteHypergraph[102X( [3Xn[103X, [3Xr[103X ) [32X function
+  
+  [33X[0;0YReturns  the  hypergraph  that  has  [22X{1...  [3Xn[103X}[122X  as  set of vertices, and all
+  [3Xr[103X-subsets of [22X{1... [3Xn[103X}[122X as hyperedges.[133X
+  
+  [1X2.1-3 HRandomUniformHypergraph[101X
+  
+  [29X[2XHRandomUniformHypergraph[102X( [3Xn[103X, [3Xr[103X, [3Xp[103X ) [32X function
+  
+  [33X[0;0YReturns  a  hypergraph with set of vertices given by [22X{1...[3Xn[103X}[122X, and where each
+  [3Xr[103X-subset of [22X{1...[3Xn[103X}[122X appears as a hyperedge with probability [3Xp[103X.[133X
+  
+  [1X2.1-4 HRemovedEdge[101X
+  
+  [29X[2XHRemovedEdge[102X( [3XH[103X, [3Xe[103X ) [32X function
+  
+  [33X[0;0YReturns the graph obtained from the hypergraph [3XH[103X removing its edge [3Xe[103X.[133X
+  
+  
+  [1X2.2 [33X[0;0YProperties[133X[101X
+  
+  [1X2.2-1 IsUniform[101X
+  
+  [29X[2XIsUniform[102X( [3XH[103X ) [32X method
+  
+  [33X[0;0YDetermines  if  the hypergraph [3XH[103X is uniform, that is, if all edges of [3XH[103X have
+  the  same  cardinality  [22Xk[122X.  If  [3XH[103X  is  uniform, then the function returns [22Xk[122X,
+  otherwise, it returns false.[133X
+  
+  [1X2.2-2 IsSimple[101X
+  
+  [29X[2XIsSimple[102X( [3XH[103X ) [32X method
+  
+  [33X[0;0YDetermines whether the hypergraph [3XH[103X is simple. (A hypergraph is simple if no
+  edge is contained in another edge.)[133X
+  
+  
+  [1X2.3 [33X[0;0YParameters[133X[101X
+  
+  [1X2.3-1 HNeighborhood[101X
+  
+  [29X[2XHNeighborhood[102X( [3XH[103X, [3Xx[103X ) [32X function
+  
+  [33X[0;0YGiven  a hypergraph [3XH[103X and one of its vertices [3Xx[103X, returns the set of vertices
+  that share an edge with [3Xx[103X.[133X
+  
+  [1X2.3-2 HDistancesFrom[101X
+  
+  [29X[2XHDistancesFrom[102X( [3XH[103X, [3Xx[103X ) [32X function
+  
+  [33X[0;0YGiven a hypergraph [3XH[103X and one of its vertices [3Xx[103X, it returns a record [3XL[103X, where
+  [3XL.u[103X is equal to the distance in [3XH[103X from the vertex [3Xx[103X to the vertex [3Xu[103X.[133X
+  
+  [1X2.3-3 HDistance[101X
+  
+  [29X[2XHDistance[102X( [3XH[103X, [3Xx[103X, [3Xy[103X ) [32X function
+  
+  [33X[0;0YGiven a hypergraph [3XH[103X and two of its vertices [3Xx[103X, [3Xy[103X, this function returns the
+  distance in [3XH[103X from [3Xx[103X to [3Xy[103X.[133X
+  
+  [1X2.3-4 Diameter[101X
+  
+  [29X[2XDiameter[102X( [3XH[103X ) [32X method
+  
+  [33X[0;0YReturns the diameter of the hypergraph [3XH[103X.[133X
+  
+  [1X2.3-5 Girth[101X
+  
+  [29X[2XGirth[102X( [3XH[103X ) [32X method
+  
+  [33X[0;0YReturns the girth of the hypergraph [3XH[103X.[133X
+  
