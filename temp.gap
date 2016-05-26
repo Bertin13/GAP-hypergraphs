@@ -45,11 +45,14 @@ HIncidenceMatrix :=function ( E, n )
     Print("Incidence matrix is ", M, "\n");
 end;
 
-    
-               
-               
-               
-               
-               
+IsConnected := NewProperty("IsConnected", IsHHypergraph);
 
+HY@ISCONNECTED := function( H )
+    local l, x;
+    x := H!.vertices[1];
+    l := HDistancesFrom(H, x);
+    return (Length(RecNames(l)) = Length(H!.vertices));
+end;
+
+InstallMethod(IsConnected, "for hypergraphs", [IsHHypergraph], HY@ISCONNECTED);
 
