@@ -1,4 +1,5 @@
 DeclareOperation( "HHypergraph", [ IsList, IsList ] );
+DeclareOperation( "HHypergraph", [ IsList ] );
 
 DeclareOperation( "IsUniform", [ IsHHypergraph ] );
 
@@ -109,3 +110,34 @@ DeclareGlobalFunction( "HDistance" );
 ##  </ManSection>
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "HRemovedEdge" );
+
+DeclareAttribute("IndexOfEdges", IsHHypergraph);
+
+DeclareOperation("Edges", [IsHHypergraph]);
+
+DeclareGlobalFunction( "RemovedSet@" );
+
+#F  HRemovedVertex( H, x )
+##
+##  <#GAPDoc Label="HRemovedVertex">
+##  <ManSection>
+##  <Func Name="HRemovedVertex" Arg="H, x"/>
+##
+##  <Description>
+##
+##  Returns the hypergraph obtained from the hypergraph <A>H</A> by
+##  removing the vertex <A>x</A> from its list of vertices and from
+##  each of its edges. It also removes edges that become empty as a
+##  result.
+##
+##  </Description>
+##
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "HRemovedVertex" );
+
+DeclareGlobalFunction( "IsConnected@" );
+DeclareProperty("IsConnected", IsHHypergraph);
+
+DeclareGlobalFunction( "IsSimple@" );
+DeclareProperty("IsSimpleH", IsHHypergraph);

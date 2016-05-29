@@ -3,11 +3,13 @@
 ##  <#GAPDoc Label="HHypergraph">
 ##  <ManSection>
 ##  <Meth Name="HHypergraph" Arg="V, Ed"/>
+##  <Meth Name="HHypergraph" Arg="Ed"/>
 ##
 ##  <Description>
 ##
 ##  Returns the hypergraph object, with vertices <A>V</A> and
-##  hyperedges <A>Ed</A>.
+##  hyperedges <A>Ed</A>. In the second form, the hyperedges determine
+##  the set of vertices, as the union of the hyperedges.
 ##
 ##  </Description>
 ##
@@ -19,7 +21,8 @@ InstallMethod( HHypergraph,
 function (verts, hedges)
     local ve, hed, isvalid, i;
     ve := Set(verts);
-    hed := List(hedges,x->Set(x));
+    hed := List(hedges, x -> Set(x));
+    hed := Filtered(hed, x -> (x<>[]));
     isvalid := true;
     i := 0;
     while isvalid and i < Length(hed) do
@@ -31,28 +34,37 @@ function (verts, hedges)
                          rec(vertices := ve,
                              hyperedges := hed));
     else
-        Print("Error. Hyperedge not contained in set of vertices.\n");
+        Print("Error. Hyperedge", hed[i],
+              " not contained in set of vertices", ve, ".\n");
         return;
     fi;
 end);
 
-InstallMethod(PrintObj,"for hypergraphs",
-  [IsHHypergraph],
-  function(G)
-  Print("Hypergraph with vertices ",G!.vertices," and edges ",G!.hyperedges,"\n");
-end);
+InstallMethod(HHypergraph, "only edges", [IsList],
+              function(Ed)
+                  return HHypergraph(Union(Ed),Ed);
+              end);
 
-InstallMethod(ViewObj,"for hypergraphs",
-  [IsHHypergraph],
-function(G)
-  Print("Hypergraph with vertices ",G!.vertices," and edges ",G!.hyperedges);
-end);
+InstallMethod(Vertices, "for hypergraphs", [IsHHypergraph],
+              function(H) return H!.vertices;
+              end);
 
-# InstallMethod(Vertices, "for hypergraphs",
-#               [IsHHypergraph],
-#     function( H )
-#         return H!.vertices;
-#     end);
+InstallMethod(Edges, "for hypergraphs", [IsHHypergraph],
+              function(H) return H!.hyperedges;
+              end);
+
+InstallMethod(PrintObj, "for hypergraphs",
+    [IsHHypergraph],
+              function(G)
+                  Print("Hypergraph with vertices ", Vertices(G), " and edges ", Edges(G), "\n");
+              end);
+
+InstallMethod(ViewObj, "for hypergraphs",
+              [IsHHypergraph],
+              function(G)
+                  Print("Hypergraph with vertices ", Vertices(G), " and edges ", Edges(G));
+              end);
+
 
 #M  IsUniform( H ) 
 ##
@@ -88,22 +100,7 @@ InstallMethod(IsUniform, "for hypergraphs", [ IsHHypergraph ],
         fi;
     end);
 
-#M  IsSimple( H ) 
-##
-##  <#GAPDoc Label="IsSimple">
-##  <ManSection>
-##  <Meth Name="IsSimple" Arg="H"/>
-##
-##  <Description>
-##
-##  Determines whether the hypergraph <A>H</A> is simple. (A
-##  hypergraph is simple if no edge is contained in another edge.)
-##
-##  </Description>
-##
-##  </ManSection>
-##  <#/GAPDoc>
-InstallMethod(IsSimple, "for hypergraphs", [ IsHHypergraph ],
+InstallGlobalFunction(IsSimple@,
     function( H )
         local Ed, isit, n, i, j;
         Ed := H!.hyperedges;
@@ -120,6 +117,23 @@ InstallMethod(IsSimple, "for hypergraphs", [ IsHHypergraph ],
         od;
         return isit;
     end);
+
+#M  IsSimple( H )
+##
+##  <#GAPDoc Label="IsSimple">
+##  <ManSection>
+##  <Meth Name="IsSimple" Arg="H"/>
+##
+##  <Description>
+##
+##  Determines whether the hypergraph <A>H</A> is simple. (A
+##  hypergraph is simple if no edge is contained in another edge.)
+##
+##  </Description>
+##
+##  </ManSection>
+##  <#/GAPDoc>
+InstallMethod(IsSimpleH, "for hypergraphs", [ IsHHypergraph ], IsSimple@);
 
 #F  HCompleteHypergraph( n, r ) 
 ##
@@ -168,7 +182,6 @@ InstallGlobalFunction( HDistancesFrom, function( H, x )
     Add(T, x);
     nq := Length(Q);
     while nq <> 0 do
-        #Print(l,"\n");
         u := Remove(Q, 1);
         nq := nq-1;
         Hn := Difference(HNeighborhood(H, u), T);
@@ -287,7 +300,6 @@ HY@GIRTH := function( H )
             else
                 if g < girth then
                     girth := g;
-                    #Print("Girth improved!, x=",pairs[j][1],", y=", pairs[j][2], "\n");
                 fi;
             fi;
         od;
@@ -311,4 +323,86 @@ end;
 ##  <#/GAPDoc>
 InstallMethod( Girth, "for hypergraphs", [ IsHHypergraph ], 1, HY@GIRTH);
 
+IndexOfEdges@ := function( H )
+    local l, Ed, m, x, Ve, v, i, e;
+    l := rec();
+    Ve := Vertices(H);
+    Ed := Edges(H);
+    m := Length(Ed);
+    for v in Ve do
+        l.(v) := [];
+    od;
+    for i in [1..m] do
+        e := Ed[i];
+        for x in e do
+            Add(l.(x), i);
+        od;
+    od;
+    return l;
+end;
 
+#M  IndexOfEdges( H )
+##
+##  <#GAPDoc Label="IndexOfEdges">
+##  <ManSection>
+##  <Meth Name="IndexOfEdges" Arg="H"/>
+##
+##  <Description>
+##
+##  Given a hypergraph <A>H</A>, the function returns a record
+##  <A>I</A>, where <M>I.u</M> is a list of the indices of the edges
+##  where the vertex <A>u</A> appears.
+##
+##  </Description>
+##
+##  </ManSection>
+##  <#/GAPDoc>
+InstallMethod( IndexOfEdges, "for hypergraphs", [ IsHHypergraph ], IndexOfEdges@ );
+
+#F  RemovedSet@( S, x )
+##
+InstallGlobalFunction( RemovedSet@, function( S, x )
+    local p, l;
+    l := ShallowCopy(S);
+    p := PositionSet(S, x);
+    if p <> fail then
+        Remove(l, p);
+    fi;
+    return l;
+end);
+
+#F  HRemovedVertex( H, x )
+##
+InstallGlobalFunction( HRemovedVertex, function( H, x )
+    local Ve, Ed, nVe, nEd;
+    Ve := Vertices(H);
+    Ed := Edges(H);
+    nVe := RemovedSet@(Ve, x);
+    nEd := List(Ed, u -> RemovedSet@(u, x));
+    return HHypergraph(nVe, nEd);
+end);
+
+#F  IsConnected@( H )
+##
+InstallGlobalFunction( IsConnected@, function( H )
+    local l, x;
+    x := H!.vertices[1];
+    l := HDistancesFrom(H, x);
+    return (Length(RecNames(l)) = Length(H!.vertices));
+end);
+
+#M  IsConnected( H )
+##
+##  <#GAPDoc Label="IsConnected">
+##  <ManSection>
+##  <Meth Name="IsConnected" Arg="H"/>
+##
+##  <Description>
+##
+##  Determines whether the hypergraph <A>H</A> is connected.
+##
+##  </Description>
+##
+##  </ManSection>
+##  <#/GAPDoc>
+InstallMethod( IsConnected, "for hypergraphs", [ IsHHypergraph ], IsConnected@ );

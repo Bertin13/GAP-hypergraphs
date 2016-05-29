@@ -45,14 +45,34 @@ HIncidenceMatrix :=function ( E, n )
     Print("Incidence matrix is ", M, "\n");
 end;
 
-IsConnected := NewProperty("IsConnected", IsHHypergraph);
-
-HY@ISCONNECTED := function( H )
-    local l, x;
-    x := H!.vertices[1];
-    l := HDistancesFrom(H, x);
-    return (Length(RecNames(l)) = Length(H!.vertices));
+DualHypergraph := function (H)
+    local l, N, Ed, v;
+    l := IndexOfEdges(H);
+    Ed := [];
+    N := RecNames(l);
+    for v in N do
+        Add(Ed, l.(v));
+    od;
+    return HHypergraph(Ed);
 end;
 
-InstallMethod(IsConnected, "for hypergraphs", [IsHHypergraph], HY@ISCONNECTED);
+IsIsomorphicHypergraph := function (H1, H2)
+    local D1, D2;
+    D1 := BlockDesign(Length(Vertices(H1)), Edges(H1));
+    D2 := BlockDesign(Length(Vertices(H2)), Edges(H2));
+    return IsIsomorphicBlockDesign(D1, D2);
+end;
 
+BipartiteGraphFromHypergraph := function(H)
+    local ady, V, TrivialAction;
+    V := Concatenation(Vertices(H), Edges(H));
+    ady := function(x,y)
+        return IsList(y) and (x in y);
+    end;
+    TrivialAction := function(x,g)
+        return x;
+    end;
+    return UnderlyingGraph(Graph(Group(()),V,TrivialAction,ady));
+end;
+
+            
