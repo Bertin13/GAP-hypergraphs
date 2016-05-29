@@ -12,6 +12,8 @@
 
     <#Include Label="HRemovedEdge">
 
+    <#Include Label="HRemovedVertex">
+
   </Section>
 
   <Section Label="Properties">
@@ -21,20 +23,29 @@
 
     <#Include Label="IsSimple">
 
+    <#Include Label="IsConnected">
+
   </Section>
 
   <Section Label="Parameters">
     <Heading>Parameters</Heading>
   
-    <#Include Label="HNeighborhood">
-
-    <#Include Label="HDistancesFrom">
 
     <#Include Label="HDistance">
 
     <#Include Label="Diameter">
 
     <#Include Label="Girth">
+    
+  </Section>
+
+  <Section Label="Lists">
+    <Heading>Lists</Heading>
+    <#Include Label="HNeighborhood">
+
+    <#Include Label="HDistancesFrom">
+
+    <#Include Label="IndexOfEdges">
     
   </Section>
   

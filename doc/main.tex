@@ -163,9 +163,13 @@ or (at your option) any later version. \mbox{}}\\[1cm]
 {\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{HHypergraph({\mdseries\slshape V, Ed})\index{HHypergraph@\texttt{HHypergraph}}
 \label{HHypergraph}
 }\hfill{\scriptsize (method)}}\\
+\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{HHypergraph({\mdseries\slshape Ed})\index{HHypergraph@\texttt{HHypergraph}}
+\label{HHypergraph}
+}\hfill{\scriptsize (method)}}\\
 
 
- Returns the hypergraph object, with vertices \mbox{\texttt{\mdseries\slshape V}} and hyperedges \mbox{\texttt{\mdseries\slshape Ed}}. }
+ Returns the hypergraph object, with vertices \mbox{\texttt{\mdseries\slshape V}} and hyperedges \mbox{\texttt{\mdseries\slshape Ed}}. In the second form, the hyperedges determine the set of vertices, as the
+union of the hyperedges. }
 
  
 
@@ -203,6 +207,19 @@ or (at your option) any later version. \mbox{}}\\[1cm]
 
  Returns the graph obtained from the hypergraph \mbox{\texttt{\mdseries\slshape H}} removing its edge \mbox{\texttt{\mdseries\slshape e}}. }
 
+ 
+
+\subsection{\textcolor{Chapter }{HRemovedVertex}}
+\logpage{[ 2, 1, 5 ]}\nobreak
+\hyperdef{L}{X7C3E55647FC75C20}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{HRemovedVertex({\mdseries\slshape H, x})\index{HRemovedVertex@\texttt{HRemovedVertex}}
+\label{HRemovedVertex}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Returns the hypergraph obtained from the hypergraph \mbox{\texttt{\mdseries\slshape H}} by removing the vertex \mbox{\texttt{\mdseries\slshape x}} from its list of vertices and from each of its edges. It also removes edges
+that become empty as a result. }
+
  }
 
  
@@ -234,6 +251,18 @@ or (at your option) any later version. \mbox{}}\\[1cm]
 
  Determines whether the hypergraph \mbox{\texttt{\mdseries\slshape H}} is simple. (A hypergraph is simple if no edge is contained in another edge.) }
 
+ 
+
+\subsection{\textcolor{Chapter }{IsConnected}}
+\logpage{[ 2, 2, 3 ]}\nobreak
+\hyperdef{L}{X877F178084D9A589}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{IsConnected({\mdseries\slshape H})\index{IsConnected@\texttt{IsConnected}}
+\label{IsConnected}
+}\hfill{\scriptsize (method)}}\\
+
+
+ Determines whether the hypergraph \mbox{\texttt{\mdseries\slshape H}} is connected. }
+
  }
 
  
@@ -243,32 +272,8 @@ or (at your option) any later version. \mbox{}}\\[1cm]
 {
   
 
-\subsection{\textcolor{Chapter }{HNeighborhood}}
-\logpage{[ 2, 3, 1 ]}\nobreak
-\hyperdef{L}{X8598D1FF7A9EE606}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{HNeighborhood({\mdseries\slshape H, x})\index{HNeighborhood@\texttt{HNeighborhood}}
-\label{HNeighborhood}
-}\hfill{\scriptsize (function)}}\\
-
-
- Given a hypergraph \mbox{\texttt{\mdseries\slshape H}} and one of its vertices \mbox{\texttt{\mdseries\slshape x}}, returns the set of vertices that share an edge with \mbox{\texttt{\mdseries\slshape x}}. }
-
- 
-
-\subsection{\textcolor{Chapter }{HDistancesFrom}}
-\logpage{[ 2, 3, 2 ]}\nobreak
-\hyperdef{L}{X787895877CEB1CED}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{HDistancesFrom({\mdseries\slshape H, x})\index{HDistancesFrom@\texttt{HDistancesFrom}}
-\label{HDistancesFrom}
-}\hfill{\scriptsize (function)}}\\
-
-
- Given a hypergraph \mbox{\texttt{\mdseries\slshape H}} and one of its vertices \mbox{\texttt{\mdseries\slshape x}}, it returns a record \mbox{\texttt{\mdseries\slshape L}}, where \mbox{\texttt{\mdseries\slshape L.u}} is equal to the distance in \mbox{\texttt{\mdseries\slshape H}} from the vertex \mbox{\texttt{\mdseries\slshape x}} to the vertex \mbox{\texttt{\mdseries\slshape u}}. }
-
- 
-
 \subsection{\textcolor{Chapter }{HDistance}}
-\logpage{[ 2, 3, 3 ]}\nobreak
+\logpage{[ 2, 3, 1 ]}\nobreak
 \hyperdef{L}{X8540BDF07EA97CFB}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{HDistance({\mdseries\slshape H, x, y})\index{HDistance@\texttt{HDistance}}
 \label{HDistance}
@@ -280,7 +285,7 @@ or (at your option) any later version. \mbox{}}\\[1cm]
  
 
 \subsection{\textcolor{Chapter }{Diameter}}
-\logpage{[ 2, 3, 4 ]}\nobreak
+\logpage{[ 2, 3, 2 ]}\nobreak
 \hyperdef{L}{X7AB7F57C832586ED}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{Diameter({\mdseries\slshape H})\index{Diameter@\texttt{Diameter}}
 \label{Diameter}
@@ -292,7 +297,7 @@ or (at your option) any later version. \mbox{}}\\[1cm]
  
 
 \subsection{\textcolor{Chapter }{Girth}}
-\logpage{[ 2, 3, 5 ]}\nobreak
+\logpage{[ 2, 3, 3 ]}\nobreak
 \hyperdef{L}{X84E213C9801D1558}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{Girth({\mdseries\slshape H})\index{Girth@\texttt{Girth}}
 \label{Girth}
@@ -300,6 +305,49 @@ or (at your option) any later version. \mbox{}}\\[1cm]
 
 
  Returns the girth of the hypergraph \mbox{\texttt{\mdseries\slshape H}}. }
+
+ }
+
+ 
+\section{\textcolor{Chapter }{Lists}}\label{Lists}
+\logpage{[ 2, 4, 0 ]}
+\hyperdef{L}{X7B256AE5780F140A}{}
+{
+  
+
+\subsection{\textcolor{Chapter }{HNeighborhood}}
+\logpage{[ 2, 4, 1 ]}\nobreak
+\hyperdef{L}{X8598D1FF7A9EE606}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{HNeighborhood({\mdseries\slshape H, x})\index{HNeighborhood@\texttt{HNeighborhood}}
+\label{HNeighborhood}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Given a hypergraph \mbox{\texttt{\mdseries\slshape H}} and one of its vertices \mbox{\texttt{\mdseries\slshape x}}, returns the set of vertices that share an edge with \mbox{\texttt{\mdseries\slshape x}}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{HDistancesFrom}}
+\logpage{[ 2, 4, 2 ]}\nobreak
+\hyperdef{L}{X787895877CEB1CED}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{HDistancesFrom({\mdseries\slshape H, x})\index{HDistancesFrom@\texttt{HDistancesFrom}}
+\label{HDistancesFrom}
+}\hfill{\scriptsize (function)}}\\
+
+
+ Given a hypergraph \mbox{\texttt{\mdseries\slshape H}} and one of its vertices \mbox{\texttt{\mdseries\slshape x}}, it returns a record \mbox{\texttt{\mdseries\slshape L}}, where \mbox{\texttt{\mdseries\slshape L.u}} is equal to the distance in \mbox{\texttt{\mdseries\slshape H}} from the vertex \mbox{\texttt{\mdseries\slshape x}} to the vertex \mbox{\texttt{\mdseries\slshape u}}. }
+
+ 
+
+\subsection{\textcolor{Chapter }{IndexOfEdges}}
+\logpage{[ 2, 4, 3 ]}\nobreak
+\hyperdef{L}{X78DAC8357DDDB349}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{IndexOfEdges({\mdseries\slshape H})\index{IndexOfEdges@\texttt{IndexOfEdges}}
+\label{IndexOfEdges}
+}\hfill{\scriptsize (method)}}\\
+
+
+ Given a hypergraph \mbox{\texttt{\mdseries\slshape H}}, the function returns a record \mbox{\texttt{\mdseries\slshape I}}, where $I.u$ is a list of the indices of the edges where the vertex \mbox{\texttt{\mdseries\slshape u}} appears. }
 
  }
 
