@@ -1,4 +1,3 @@
-
 PLovasz :=function ( E )
     local aux, i, j, k, a, suma, XX;
     k:=Length(E);
@@ -78,23 +77,14 @@ Hypertree :=function( V, E)
     local i, j, k, v, e, M, T, C, VV, IP, EP, INP, aux, auxI, auxE, Vaux, cycle, a, aa;
     k:=Length(E);
     v:=Length(V);
-    T:=[];
-    C:=[];
     e:=[];
     IP:=[1..k];
-    INP:=[];
-    VV:=[[]];
     aux:=1;
-    auxI:=[];
     auxE:=[];
     cycle:=[];
-    aa:=0;    
     for i in [1..k] do
         a:=1;
-#        Print("Valor de i ", i, "\n");
         e[i]:=Set(E[i]);
-        C:=Union(C,E[i]);
-        C[1]:=e[i];
         INP:=[i];
         VV:=e[i];
         Vaux:=e[i];
@@ -102,43 +92,120 @@ Hypertree :=function( V, E)
         while a <> 0 do
         for j in Difference(IP,INP) do
             if Intersection(E[j],VV) <> [] then
-#                VV:=Union(VV,E[j]);
-                Add(auxI,j);                
                 aux:=aux+1;
                 Add(auxE,E[j]);
                 Add(cycle,j);                
                 Vaux:=ShallowCopy(Union(Vaux,E[j]));
-                Print("E ",E[j],auxI, Difference(IP,INP), auxE, " Vaux ", Vaux,"\n");
             fi;
-#        od;
         VV:=ShallowCopy(Union(VV,Vaux));
         if 2*aux=Length(VV)-1 then
-            Print("It's a tree \n", aux, VV, "\n");        
             a:=1;
         else                
-            Print("Is not a tree \n", aux, VV, "\n");
             Print("There is a cycle in ", cycle, "\n");
             a:=0;        
             return;
         fi; 
         od;
-        
         if Length(VV)=v then
             a:=0;
         fi;
         od;
         aux:=1; VV:=[];
-        
     od;
-    
-#    Print("C ",C, "\n");
-#    if 2*k=v-1 then 
-#        Print("It's a tree \n");
-#    else
-#        Print("Is not a tree \n");
-#    fi;
-    #    suma:=Sum([1..k], i -> )
     return;
+end;
+
+Hypertree2 :=function( V, E)
+    local i, j, k, v, VV, IP, INP, aux, Vaux, cycle, a, suma;
+    k :=Length(E);
+    v :=Length(V);
+    IP :=[1..k];
+    aux :=1;
+    cycle :=[];
+    a :=1;
+    suma := Length(Union(E));
+    if suma=2*k+1 then
+        Print("Tree");
+        return;
+    else
+        while a <> 0 do
+            for i in [1..k] do
+            INP:=[i];
+            VV:=E[i];
+            Vaux:=E[i];
+            cycle:=[i];
+                for j in Difference(IP,INP) do
+                    if Intersection(E[j],VV) <> [] then
+                        aux:=aux+1;
+                        Add(cycle,j);
+                        Vaux:=ShallowCopy(Union(Vaux,E[j]));
+                    fi;
+                    VV:=ShallowCopy(Union(VV,Vaux));
+                od;
+                if 2*aux <> Length(VV)-1 then
+                    Print("There is a cycle in ", cycle, "\n");
+                    a := 0;
+                    return;
+                fi;
+            od;
+        od;
+    fi;
+    return cycle;
+end;
+
+HGirth2 :=function( V, E)
+    local i, j, k, v, VV, IP, INP, aux, Vaux, cycle, a, suma, CC, CCC, EE, XX;
+    k :=Length(E);
+    v :=Length(V);
+    aux :=1;
+    cycle :=[];
+    XX :=[];
+    a :=1;
+    CC :=[[]];
+    suma := Length(Union(E));
+    if suma=2*k+1 then
+        Print("Tree");
+        return;
+    else
+        XX :=E;
+        while a <> 0 do
+             IP :=[1..Length(XX)];
+            for i in [1..Length(XX)] do
+                EE:=[];
+            INP:=[i];
+            VV:=XX[i];
+            Vaux:=XX[i];
+            cycle:=[i];
+                 for j in Difference(IP,INP) do
+                    if Intersection(XX[j],VV) <> [] then
+                        aux:=aux+1;
+                        Add(cycle,j);
+                        Vaux:=ShallowCopy(Union(Vaux,XX[j]));
+                    fi;
+                    VV:=ShallowCopy(Union(VV,Vaux));
+                 if 2*aux <> Length(VV)-1 then
+                     CC[i] := cycle;
+                     aux := 1;
+                     Vaux := [];
+                     VV:=[];
+                     break;
+                 fi;
+                 od;
+        od;
+            CCC := Set(List(CC, i -> Set(i)));
+            for i in CCC do
+                if Length(i)=Minimum(List(CCC, j -> Length(j))) then
+                    Add(EE,i);
+                fi;
+            od;
+            if XX = EE then 
+                 a := 0;
+            else
+                XX :=ShallowCopy(EE);
+            fi;
+        od;
+    fi;
+    return Length(XX[1]);
 end;
 
 HConnected3Random :=function( n, m)
@@ -317,10 +384,105 @@ KSkSubsetLexUnrank :=function( r, k, n )
     od;
     return T;
 end;
-    
 
-    
-               
+HLinear :=function ( E )
+    local aux, i, j, k, a, RR;
+    k:=Length(E);
+    aux:=0;
+    a := 0;
+    while aux = 0 do
+        for i in [1..k-1] do
+            for j in [i+1..k] do
+                if Length(Intersection(E[i],E[j])) <= 1 then
+                    aux := 0;
+                    a := a+1;
+                    RR := true;
+                else
+                    aux := 1;
+                    RR := false;
+                    return RR;
+                fi;
+            od;
+        od;
+        if a = NrCombinations([1..k],2) then
+            aux := 1;
+        fi;
+    od;
+    return RR;
+end;
+
+HDual :=function ( V, E )
+    local aux, i, j, k, a, VV, EE;
+    EE:=[[]];
+    k :=Length(E);
+    aux:=0;
+    a := 0;
+    VV := [1..k];
+    for i in V do
+        EE[i] := [];
+        for j in [1..k] do
+            if i in E[j] then
+                Add(EE[i],j);
+            fi;
+        od; 
+    od;   
+    return EE;
+end;
+
+HPartial :=function ( V, E, J )
+    local i, j, k, a, VV, EE;
+    k := Length(J);
+    EE := [];
+    if IsSubset([1..Length(E)],J) and J <> [] then 
+        for i in J do
+            Add(EE,E[i]);
+        od;   
+    else
+        Print("Fail \n");
+        return;
+    fi;
+    return EE;
+end;
+
+HSubHypergraph :=function ( V, E, A )
+    local i, j, k, a, VV, XX;
+    XX := [];
+    for i in [1..Length(E)] do
+        if Intersection(E[i],A) <> [] then 
+            Add(XX,Intersection(E[i],A));
+        fi;
+    od;
+    if A = [] or XX = [] then 
+        Print("Fail \n");
+        return;
+    fi;
+    return XX;
+end;
+
+HRank :=function ( E )
+    local i, j, k, a, LL;
+    LL := Maximum(List(E, i -> Length(i)));
+    return LL;
+end;
+
+HAntiRank :=function ( E )
+    local i, j, k, a, LL;
+    LL := Minimum(List(E, i -> Length(i)));
+    return LL;
+end;
+
+HSeqDegree :=function ( V, E )
+    local i, j, k, a, LL, DD;
+    LL:=[];
+    for j in V do
+        LL[j] := List(E, i -> Length(Intersection(i,[j])));
+        Print("j , LL[j]", j, LL[j],"\n");
+    od;
+    DD:=List(LL, i -> Sum(i));
+    Print("D", DD);
+    # Falta ordenar conservando repeticiones.
+    return Reversed(Set(DD));
+end;
                
                
                

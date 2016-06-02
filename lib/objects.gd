@@ -1,0 +1,1 @@
+DeclareCategory("IsHHypergraph", IsRecord);
