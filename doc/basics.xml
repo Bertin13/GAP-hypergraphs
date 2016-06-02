@@ -33,14 +33,18 @@
 
     <#Include Label="HDistance">
 
-    <#Include Label="Diameter">
+    <#Include Label="HDiameter">
 
-    <#Include Label="Girth">
+    <#Include Label="HGirth">
     
   </Section>
 
   <Section Label="Lists">
     <Heading>Lists</Heading>
+    <#Include Label="Vertices">
+
+    <#Include Label="Edges">
+
     <#Include Label="HNeighborhood">
 
     <#Include Label="HDistancesFrom">

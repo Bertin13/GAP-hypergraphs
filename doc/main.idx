@@ -1,5 +1,5 @@
-\indexentry{HHypergraph@\texttt  {HHypergraph}|hyperpage}{5}
-\indexentry{HHypergraph@\texttt  {HHypergraph}|hyperpage}{5}
+\indexentry{HHypergraph@\texttt  {HHypergraph}!for list of vertices and edges|hyperpage}{5}
+\indexentry{HHypergraph@\texttt  {HHypergraph}!for only edges|hyperpage}{5}
 \indexentry{HCompleteHypergraph@\texttt  {HCompleteHypergraph}|hyperpage}{5}
 \indexentry{HRandomUniformHypergraph@\texttt  {HRandomUniformHypergraph}|hyperpage}{5}
 \indexentry{HRemovedEdge@\texttt  {HRemovedEdge}|hyperpage}{5}
@@ -8,8 +8,10 @@
 \indexentry{IsSimple@\texttt  {IsSimple}|hyperpage}{6}
 \indexentry{IsConnected@\texttt  {IsConnected}|hyperpage}{6}
 \indexentry{HDistance@\texttt  {HDistance}|hyperpage}{6}
-\indexentry{Diameter@\texttt  {Diameter}|hyperpage}{6}
-\indexentry{Girth@\texttt  {Girth}|hyperpage}{6}
+\indexentry{HDiameter@\texttt  {HDiameter}|hyperpage}{6}
+\indexentry{HGirth@\texttt  {HGirth}|hyperpage}{6}
+\indexentry{Vertices@\texttt  {Vertices}|hyperpage}{7}
+\indexentry{Edges@\texttt  {Edges}|hyperpage}{7}
 \indexentry{HNeighborhood@\texttt  {HNeighborhood}|hyperpage}{7}
 \indexentry{HDistancesFrom@\texttt  {HDistancesFrom}|hyperpage}{7}
 \indexentry{IndexOfEdges@\texttt  {IndexOfEdges}|hyperpage}{7}

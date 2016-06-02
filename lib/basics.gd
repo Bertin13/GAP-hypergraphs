@@ -1,7 +1,7 @@
 DeclareOperation( "HHypergraph", [ IsList, IsList ] );
 DeclareOperation( "HHypergraph", [ IsList ] );
 
-DeclareOperation( "IsUniform", [ IsHHypergraph ] );
+DeclareAttribute( "IsUniform",  IsHHypergraph );
 
 #F  HCompleteHypergraph( n, r ) 
 ##
@@ -141,3 +141,7 @@ DeclareProperty("IsConnected", IsHHypergraph);
 
 DeclareGlobalFunction( "IsSimple@" );
 DeclareProperty("IsSimpleH", IsHHypergraph);
+
+DeclareAttribute("HDiameter", IsHHypergraph);
+
+DeclareAttribute("HGirth", IsHHypergraph);

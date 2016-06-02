@@ -2,8 +2,8 @@
 ##
 ##  <#GAPDoc Label="HHypergraph">
 ##  <ManSection>
-##  <Meth Name="HHypergraph" Arg="V, Ed"/>
-##  <Meth Name="HHypergraph" Arg="Ed"/>
+##  <Meth Name="HHypergraph" Arg="V, Ed" Label="for list of vertices and edges"/>
+##  <Meth Name="HHypergraph" Arg="Ed" Label="for only edges"/>
 ##
 ##  <Description>
 ##
@@ -40,16 +40,44 @@ function (verts, hedges)
     fi;
 end);
 
-InstallMethod(HHypergraph, "only edges", [IsList],
+InstallMethod( HHypergraph, "only edges", [ IsList ],  
               function(Ed)
                   return HHypergraph(Union(Ed),Ed);
               end);
 
-InstallMethod(Vertices, "for hypergraphs", [IsHHypergraph],
+#M  Vertices( H ) 
+##
+##  <#GAPDoc Label="Vertices">
+##  <ManSection>
+##  <Meth Name="Vertices" Arg="H"/>
+##
+##  <Description>
+##
+##  Returns the list of vertices of the hypergraph <A>H</A>.
+##
+##  </Description>
+##
+##  </ManSection>
+##  <#/GAPDoc>
+InstallMethod( Vertices, "for hypergraphs", [ IsHHypergraph ],  
               function(H) return H!.vertices;
               end);
 
-InstallMethod(Edges, "for hypergraphs", [IsHHypergraph],
+#M  Edges( H ) 
+##
+##  <#GAPDoc Label="Edges">
+##  <ManSection>
+##  <Meth Name="Edges" Arg="H"/>
+##
+##  <Description>
+##
+##  Returns the list of edges of the hypergraph <A>H</A>.
+##
+##  </Description>
+##
+##  </ManSection>
+##  <#/GAPDoc>
+InstallMethod( Edges, "for hypergraphs", [ IsHHypergraph ], 
               function(H) return H!.hyperedges;
               end);
 
@@ -84,17 +112,16 @@ InstallMethod(ViewObj, "for hypergraphs",
 ##  <#/GAPDoc>
 InstallMethod(IsUniform, "for hypergraphs", [ IsHHypergraph ],
     function( H )
-        local E,e, i, j, k, aux,r, isit;
-        E := H!.hyperedges;
+        local Ed, e, i, j, k, isit;
+        Ed := Edges(H);
         isit := true;
         i := 1;
-        while i < Length(E) and isit do
+        while i < Length(Ed) and isit do
             i := i+1;
-            isit := (Length(E[i]) = Length(E[1]));
+            isit := (Length(Ed[i]) = Length(Ed[1]));
         od;
         if isit then
-            Print("It's a ",Length(E[1]),"-uniform hypergraph \n");
-            return Length(E[1]);
+            return Length(Ed[1]);
         else
             return false;
         fi;
@@ -103,7 +130,7 @@ InstallMethod(IsUniform, "for hypergraphs", [ IsHHypergraph ],
 InstallGlobalFunction(IsSimple@,
     function( H )
         local Ed, isit, n, i, j;
-        Ed := H!.hyperedges;
+        Ed := Edges(H);
         n := Length(Ed);
         isit := true;
         i := 0;
@@ -159,16 +186,14 @@ end);
 #F  HNeighborhood( H, x ) 
 ##
 InstallGlobalFunction( HNeighborhood, function( H, x )
-    local Ve, Ed, Hn, e;
-    Ve := H!.vertices;
-    Ed := ShallowCopy(H!.hyperedges);
+    local l, Hn, i, Ed;
+    Ed := Edges(H);
+    l := IndexOfEdges(H);
     Hn := [];
-    for e in Ed do
-        if x in e then
-            Append(Hn, Difference(e, [x]));
-        fi;
+    for i in l.(x) do
+        Append(Hn, RemovedSet@(Ed[i], x));
     od;
-    return Set(Hn);    
+    return Set(Hn);
 end);
 
 #F  HDistancesFrom( H, x ) 
@@ -199,6 +224,9 @@ end);
 ##
 InstallGlobalFunction( HDistance, function( H, x, y )
     local Q, l, T, nq, u, Hn, v;
+    if not(x in Vertices(H)) or not(y in Vertices(H)) then
+        return infinity;
+    fi;
     Q := [x];
     l := rec();
     l.(x) := 0;
@@ -206,7 +234,6 @@ InstallGlobalFunction( HDistance, function( H, x, y )
     Add(T, x);
     nq := Length(Q);
     while nq <> 0 do
-        #Print(l,"\n");
         u := Remove(Q, 1);
         nq := nq-1;
         Hn := Difference(HNeighborhood(H, u), T);
@@ -224,9 +251,9 @@ InstallGlobalFunction( HDistance, function( H, x, y )
     return infinity;
 end);
 
-HY@DIAMETER := function( H )
+HDiameter@ := function( H )
     local Ve, i, j, n, notinf, diam, d;
-    Ve := H!.vertices;
+    Ve := Vertices(H);
     n := Length(Ve);
     notinf := true;
     i := 0;
@@ -250,11 +277,11 @@ HY@DIAMETER := function( H )
     return diam;
 end;
 
-#M  Diameter( H ) 
+#M  HDiameter( H ) 
 ##
-##  <#GAPDoc Label="Diameter">
+##  <#GAPDoc Label="HDiameter">
 ##  <ManSection>
-##  <Meth Name="Diameter" Arg="H"/>
+##  <Meth Name="HDiameter" Arg="H"/>
 ##
 ##  <Description>
 ##
@@ -264,22 +291,22 @@ end;
 ##
 ##  </ManSection>
 ##  <#/GAPDoc>
-InstallMethod(Diameter, "for hypergraphs", [ IsHHypergraph ], 1, HY@DIAMETER);
+InstallMethod(HDiameter, "for hypergraphs", [ IsHHypergraph ], HDiameter@);
 
 #F  HRemovedEdge( H, e ) 
 ##
 InstallGlobalFunction( HRemovedEdge, function( H, e )
     local Ve, Ed, newEd;
-    Ve := H!.vertices;
-    Ed := H!.hyperedges;
+    Ve := Vertices(H);
+    Ed := Edges(H);
     newEd := Difference(Ed, [e]);
     return HHypergraph(Ve, newEd);    
 end);
 
-HY@GIRTH := function( H )
+HGirth@ := function( H )
     local Ve, Ed, e, i, j, Htemp, pairs, p, nottwo, m, girth, g;
-    Ve := H!.vertices;
-    Ed := H!.hyperedges;
+    Ve := Vertices(H);
+    Ed := Edges(H);
     nottwo := true;
     m := Length(Ed);
     i := 0;
@@ -307,11 +334,11 @@ HY@GIRTH := function( H )
     return girth;
 end;
 
-#M  Girth( H ) 
+#M  HGirth( H ) 
 ##
-##  <#GAPDoc Label="Girth">
+##  <#GAPDoc Label="HGirth">
 ##  <ManSection>
-##  <Meth Name="Girth" Arg="H"/>
+##  <Meth Name="HGirth" Arg="H"/>
 ##
 ##  <Description>
 ##
@@ -321,7 +348,7 @@ end;
 ##
 ##  </ManSection>
 ##  <#/GAPDoc>
-InstallMethod( Girth, "for hypergraphs", [ IsHHypergraph ], 1, HY@GIRTH);
+InstallMethod( HGirth, "for hypergraphs", [ IsHHypergraph ], HGirth@);
 
 IndexOfEdges@ := function( H )
     local l, Ed, m, x, Ve, v, i, e;
@@ -386,9 +413,9 @@ end);
 ##
 InstallGlobalFunction( IsConnected@, function( H )
     local l, x;
-    x := H!.vertices[1];
+    x := Vertices(H)[1];
     l := HDistancesFrom(H, x);
-    return (Length(RecNames(l)) = Length(H!.vertices));
+    return (Length(RecNames(l)) = Length(Vertices(H)));
 end);
 
 #M  IsConnected( H )

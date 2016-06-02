@@ -75,36 +75,48 @@
   [33X[0;0YGiven a hypergraph [3XH[103X and two of its vertices [3Xx[103X, [3Xy[103X, this function returns the
   distance in [3XH[103X from [3Xx[103X to [3Xy[103X.[133X
   
-  [1X2.3-2 Diameter[101X
+  [1X2.3-2 HDiameter[101X
   
-  [29X[2XDiameter[102X( [3XH[103X ) [32X method
+  [29X[2XHDiameter[102X( [3XH[103X ) [32X method
   
   [33X[0;0YReturns the diameter of the hypergraph [3XH[103X.[133X
   
-  [1X2.3-3 Girth[101X
+  [1X2.3-3 HGirth[101X
   
-  [29X[2XGirth[102X( [3XH[103X ) [32X method
+  [29X[2XHGirth[102X( [3XH[103X ) [32X method
   
   [33X[0;0YReturns the girth of the hypergraph [3XH[103X.[133X
   
   
   [1X2.4 [33X[0;0YLists[133X[101X
   
-  [1X2.4-1 HNeighborhood[101X
+  [1X2.4-1 Vertices[101X
+  
+  [29X[2XVertices[102X( [3XH[103X ) [32X method
+  
+  [33X[0;0YReturns the list of vertices of the hypergraph [3XH[103X.[133X
+  
+  [1X2.4-2 Edges[101X
+  
+  [29X[2XEdges[102X( [3XH[103X ) [32X method
+  
+  [33X[0;0YReturns the list of edges of the hypergraph [3XH[103X.[133X
+  
+  [1X2.4-3 HNeighborhood[101X
   
   [29X[2XHNeighborhood[102X( [3XH[103X, [3Xx[103X ) [32X function
   
   [33X[0;0YGiven  a hypergraph [3XH[103X and one of its vertices [3Xx[103X, returns the set of vertices
   that share an edge with [3Xx[103X.[133X
   
-  [1X2.4-2 HDistancesFrom[101X
+  [1X2.4-4 HDistancesFrom[101X
   
   [29X[2XHDistancesFrom[102X( [3XH[103X, [3Xx[103X ) [32X function
   
   [33X[0;0YGiven a hypergraph [3XH[103X and one of its vertices [3Xx[103X, it returns a record [3XL[103X, where
   [3XL.u[103X is equal to the distance in [3XH[103X from the vertex [3Xx[103X to the vertex [3Xu[103X.[133X
   
-  [1X2.4-3 IndexOfEdges[101X
+  [1X2.4-5 IndexOfEdges[101X
   
   [29X[2XIndexOfEdges[102X( [3XH[103X ) [32X method
   

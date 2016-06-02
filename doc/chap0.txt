@@ -55,12 +55,14 @@
       2.2-3 IsConnected
     2.3 [33X[0;0YParameters[133X
       2.3-1 HDistance
-      2.3-2 Diameter
-      2.3-3 Girth
+      2.3-2 HDiameter
+      2.3-3 HGirth
     2.4 [33X[0;0YLists[133X
-      2.4-1 HNeighborhood
-      2.4-2 HDistancesFrom
-      2.4-3 IndexOfEdges
+      2.4-1 Vertices
+      2.4-2 Edges
+      2.4-3 HNeighborhood
+      2.4-4 HDistancesFrom
+      2.4-5 IndexOfEdges
   3 [33X[0;0YLibrary of Hypergraphs[133X
     3.1 [33X[0;0YHypergraphs[133X
       3.1-1 HFano
