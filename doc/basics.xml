@@ -1,0 +1,56 @@
+<Chapter Label="basic">
+  <Heading>Basic Constructions</Heading>
+
+  <Section Label="Hypergraphs">
+    <Heading>Hypergraphs</Heading>
+
+    <#Include Label="HHypergraph">
+
+    <#Include Label="HCompleteHypergraph">
+
+    <#Include Label="HRandomUniformHypergraph">
+
+    <#Include Label="HRemovedEdge">
+
+    <#Include Label="HRemovedVertex">
+
+  </Section>
+
+  <Section Label="Properties">
+    <Heading>Properties</Heading>
+
+    <#Include Label="IsUniform">
+
+    <#Include Label="IsSimple">
+
+    <#Include Label="IsConnected">
+
+  </Section>
+
+  <Section Label="Parameters">
+    <Heading>Parameters</Heading>
+  
+
+    <#Include Label="HDistance">
+
+    <#Include Label="HDiameter">
+
+    <#Include Label="HGirth">
+    
+  </Section>
+
+  <Section Label="Lists">
+    <Heading>Lists</Heading>
+    <#Include Label="Vertices">
+
+    <#Include Label="Edges">
+
+    <#Include Label="HNeighborhood">
+
+    <#Include Label="HDistancesFrom">
+
+    <#Include Label="IndexOfEdges">
+    
+  </Section>
+  
+</Chapter>
