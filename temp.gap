@@ -208,6 +208,12 @@ HGirth3 :=function( V, E)
     return Length(XX[1]);
 end;
 
+#([1..15],
+#                    [ [ 1, 10, 15 ], [ 1, 11, 14 ], [ 1, 12, 13 ], [ 2, 7, 15 ], 
+#                      [ 2, 8, 14 ], [ 2, 9, 13 ], [ 3, 6, 15 ], [ 3, 8, 12 ], [ 3, 9, 11 ],
+#                      [ 4, 6, 14 ], [ 4, 7, 12 ], [ 4, 9, 10 ], [ 5, 6, 13 ], [ 5, 7, 11 ], 
+#                      [ 5, 8, 10 ] ])
+
 HConnected3Random :=function( n, m)
     local i, j, k, CombE, E, aux, r, InPos, a, UE;
     E:=[];
@@ -420,7 +426,20 @@ HSeqDegree :=function ( V, E )
     # Falta ordenar conservando repeticiones.
     return Reversed(Set(DD));
 end;
-               
+
+HStainerSystem :=function ( n )
+    local k, SS;
+    SS := [];
+    for k in [3..n] do
+        if IsInt((Binomial(k,2))/3) and IsInt((k-1)/2) then
+            Add(SS,k);
+            Print("cosas", (Binomial(k,2))/3, "\n");
+        fi;
+    od;
+    return SS;
+end;
+
+        
                
                
                
