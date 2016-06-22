@@ -433,3 +433,24 @@ end);
 ##  </ManSection>
 ##  <#/GAPDoc>
 InstallMethod( IsConnected, "for hypergraphs", [ IsHHypergraph ], IsConnected@ );
+
+HIncidence@ := function( H )
+    local i, j, k, M, n, Ed, Ve;  
+    Ve := Vertices(H);
+    Ed := Edges(H);              
+    k := Length(Ed);
+    n := Length(Ve);
+    M := NullMat(n,k);
+    for i in [1..n] do
+        for j in [1..k] do
+            if i in Ed[j] then
+                M[i][j]:=1;
+            else
+                M[i][j]:=0;
+            fi;
+        od;
+    od;
+    return M;
+end;
+
+InstallMethod( HIncidence, "for hypergraphs", [ IsHHypergraph ], HIncidence@);

@@ -145,3 +145,5 @@ DeclareProperty("IsSimpleH", IsHHypergraph);
 DeclareAttribute("HDiameter", IsHHypergraph);
 
 DeclareAttribute("HGirth", IsHHypergraph);
+
+DeclareAttribute("HIncidence", IsHHypergraph);
