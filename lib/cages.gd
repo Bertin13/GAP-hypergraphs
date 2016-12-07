@@ -1,8 +1,8 @@
-#F  HypergraphWithGirth( v,k,g,u )
+#F  HypergraphWithGirth( v,g,k,u )
 ##
 ##  <#GAPDoc Label="HypergraphWithGirth">
 ##  <ManSection>
-##  <Func Name="HypergraphWithGirth" Arg="v,k,g,u"/>
+##  <Func Name="HypergraphWithGirth" Arg="v,g,k,u"/>
 ##
 ##  <Description>
 ##

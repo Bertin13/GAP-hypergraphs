@@ -1,6 +1,6 @@
-#F  HypergraphWithGirth( v,k,g,u )
+#F  HypergraphWithGirth( v,g,k,u )
 ##
-InstallGlobalFunction( HypergraphWithGirth, function( v,k,g,u )
+InstallGlobalFunction( HypergraphWithGirth, function( v,g,k,u )
     local B, LiveVertices, IndexLiveVertices, Switch, stop, removes, maxb, maxB;
     Switch := function()
         local H, Ind, combs, select, extra, j, deg, DegreeSum, IsAdmissibleBlock,
