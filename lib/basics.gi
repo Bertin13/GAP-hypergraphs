@@ -293,6 +293,36 @@ end;
 ##  <#/GAPDoc>
 InstallMethod(HDiameter, "for hypergraphs", [ IsHHypergraph ], HDiameter@);
 
+HAllDistances@ := function(H)
+    local i,j, Ve, n, M, dfrom;
+    Ve := Vertices(H);
+    n := Length(Ve);
+    M := rec();
+    for i in Ve do
+        M.(i) := rec();
+        for j in Ve do
+            M.(i).(j) := infinity;
+        od;
+        M.(i).(i) := 0;
+    od;
+    i := 0;
+    while i < n do
+        i := i+1;
+        dfrom := HDistancesFrom(H, Ve[i]);
+        for j in [i+1..n] do
+            if IsBound(dfrom.(Ve[j])) then
+                M.(Ve[i]).(Ve[j]) := dfrom.(Ve[j]);
+                M.(Ve[j]).(Ve[i]) := dfrom.(Ve[j]);
+            fi;
+        od;
+    od;
+    return M;
+end;
+
+#F  HAllDistances( H )
+##
+InstallGlobalFunction( HAllDistances, HAllDistances@ );
+
 #F  HRemovedEdge( H, e ) 
 ##
 InstallGlobalFunction( HRemovedEdge, function( H, e )

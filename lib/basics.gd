@@ -94,6 +94,24 @@ DeclareGlobalFunction( "HDistancesFrom" );
 ##  <#/GAPDoc>
 DeclareGlobalFunction( "HDistance" );
 
+#F  HAllDistances( H )
+##
+##  <#GAPDoc Label="HAllDistances">
+##  <ManSection>
+##  <Func Name="HAllDistances" Arg="H"/>
+##
+##  <Description>
+##
+##  Given a hypergraph <A>H</A>, returns a record <A>r</A> such that
+##  for two vertices <M>x,y</M>, the value <M>r.x.y</M> is the
+##  distance between <M>x</M> and <M>y</M>.
+##
+##  </Description>
+##
+##  </ManSection>
+##  <#/GAPDoc>
+DeclareGlobalFunction( "HAllDistances" );
+
 #F  HRemovedEdge( H, e ) 
 ##
 ##  <#GAPDoc Label="HRemovedEdge">
