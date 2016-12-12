@@ -23,9 +23,13 @@
       <Email>rvf0068@gmail.com</Email>
       <Homepage>http://rvf0068.github.io</Homepage>
     </Author>
+    <Author>Citlalli Zamora-Mejía
+      <Email>cizame@gmail.com</Email>
+    </Author>
 
     <Copyright> 
-      &copyright; 2016 by Bertín Hernández-Trejo and Rafael Villarroel-Flores<P/>
+      &copyright; 2016 by Bertín Hernández-Trejo, Rafael
+      Villarroel-Flores and Citlalli Zamora-Mejía<P/>
       &hypergraphs; package is free software; 
       you can redistribute it and/or modify it under the terms of the 
       <URL Text="GNU General Public License">http://www.fsf.org/licenses/gpl.html</URL> 

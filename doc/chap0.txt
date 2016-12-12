@@ -16,6 +16,8 @@
   
                             Rafael Villarroel-Flores
   
+                             Citlalli Zamora-Mejía
+  
   
   
   Bertín Hernández-Trejo
@@ -23,10 +25,13 @@
   Rafael Villarroel-Flores
       Email:    [7Xmailto:rvf0068@gmail.com[107X
       Homepage: [7Xhttp://rvf0068.github.io[107X
+  Citlalli Zamora-Mejía
+      Email:    [7Xmailto:cizame@gmail.com[107X
   
   -------------------------------------------------------
   [1XCopyright[101X
-  [33X[0;0Y© 2016 by Bertín Hernández-Trejo and Rafael Villarroel-Flores[133X
+  [33X[0;0Y©  2016  by  Bertín  Hernández-Trejo,  Rafael Villarroel-Flores and Citlalli
+  Zamora-Mejía[133X
   
   [33X[0;0Y[5Xhypergraphs[105X  package is free software; you can redistribute it and/or modify
   it    under    the    terms    of    the    GNU   General   Public   License
