@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Reading PKGVERSIONDATA chunk from the PackageInfo.g file -->
+
+<!DOCTYPE Book SYSTEM "gapdoc.dtd"
+   [ <!ENTITY hypergraphs "<Package>hypergraphs</Package>">
+     <#Include Label="PKGVERSIONDATA">
+   ]>
+
+<!-- Documentation of the hypergraphs package. -->
+
+<Book Name="hypergraphs"> 
+
+  <TitlePage>
+    <Title>&hypergraphs;</Title>
+    <Subtitle>A GAP package to work with hypergraphs</Subtitle>
+    <Version>Version &VERSION;</Version>
+    <Date>&RELEASEDATE;</Date>
+    <Author>Bertín Hernández-Trejo
+      <Email>bertin13@gmail.com</Email>
+    </Author>
+    <Author> Rafael Villarroel-Flores
+      <Email>rvf0068@gmail.com</Email>
+      <Homepage>http://rvf0068.github.io</Homepage>
+    </Author>
+    <Author>Citlalli Zamora-Mejía
+      <Email>cizame@gmail.com</Email>
+    </Author>
+
+    <Copyright> 
+      &copyright; 2016 by Bertín Hernández-Trejo, Rafael
+      Villarroel-Flores and Citlalli Zamora-Mejía<P/>
+      &hypergraphs; package is free software; 
+      you can redistribute it and/or modify it under the terms of the 
+      <URL Text="GNU General Public License">http://www.fsf.org/licenses/gpl.html</URL> 
+      as published by the Free Software Foundation; either version 2 of the License, 
+      or (at your option) any later version.
+    </Copyright>
+  </TitlePage>
+
+  <TableOfContents/>
+
+  <Body>
+
+    <#Include SYSTEM "objects.xml">
+
+    <#Include SYSTEM "basics.xml">
+
+    <#Include SYSTEM "library.xml">
+
+  </Body>
+
+  <TheIndex/>
+
+</Book>
+
+<!-- ==================================================================== -->
+

@@ -1,9 +1,8 @@
 HFamily := NewFamily("HHypergraphsFamily");
 
-HType := NewType(HFamily, IsHHypergraph);
-
 DeclareRepresentation("HRep",
                       IsComponentObjectRep and IsAttributeStoringRep,
                       ["vertices", "hyperedges"]);
 
+HType := NewType(HFamily, IsHHypergraph and HRep);
 

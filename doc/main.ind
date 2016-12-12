@@ -1,0 +1,33 @@
+\begin{theindex}
+
+  \item \texttt  {Edges}, \hyperpage{7}
+
+  \indexspace
+
+  \item \texttt  {HCompleteHypergraph}, \hyperpage{5}
+  \item \texttt  {HDiameter}, \hyperpage{6}
+  \item \texttt  {HDistance}, \hyperpage{6}
+  \item \texttt  {HDistancesFrom}, \hyperpage{7}
+  \item \texttt  {HFano}, \hyperpage{8}
+  \item \texttt  {HGirth}, \hyperpage{6}
+  \item \texttt  {HHypergraph}
+    \subitem for list of vertices and edges, \hyperpage{5}
+    \subitem for only edges, \hyperpage{5}
+  \item \texttt  {HNeighborhood}, \hyperpage{7}
+  \item \texttt  {HQuad}, \hyperpage{8}
+  \item \texttt  {HRandomUniformHypergraph}, \hyperpage{5}
+  \item \texttt  {HRemovedEdge}, \hyperpage{5}
+  \item \texttt  {HRemovedVertex}, \hyperpage{5}
+
+  \indexspace
+
+  \item \texttt  {IndexOfEdges}, \hyperpage{7}
+  \item \texttt  {IsConnected}, \hyperpage{6}
+  \item \texttt  {IsSimple}, \hyperpage{6}
+  \item \texttt  {IsUniform}, \hyperpage{6}
+
+  \indexspace
+
+  \item \texttt  {Vertices}, \hyperpage{7}
+
+\end{theindex}

@@ -1,0 +1,15 @@
+<Chapter Label="library">
+
+  <Heading>Library of Hypergraphs</Heading>
+
+  <Section Label="libhypergraphs">
+
+    <Heading>Hypergraphs</Heading>
+
+    <#Include Label="HFano">
+
+    <#Include Label="HQuad">
+
+  </Section>
+
+</Chapter>
