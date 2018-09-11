@@ -34,7 +34,7 @@ function (verts, hedges)
                          rec(vertices := ve,
                              hyperedges := hed));
     else
-        Print("Error. Hyperedge", hed[i],
+        Error("Hyperedge ", hed[i],
               " not contained in set of vertices", ve, ".\n");
         return;
     fi;
