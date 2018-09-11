@@ -163,3 +163,5 @@ DeclareProperty("IsSimpleH", IsHHypergraph);
 DeclareAttribute("HDiameter", IsHHypergraph);
 
 DeclareAttribute("HGirth", IsHHypergraph);
+
+DeclareGlobalFunction( "HDual" );

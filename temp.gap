@@ -286,34 +286,35 @@ HRandomCycle :=function( n, m)
     return E;
 end;
 
-HGirth :=function( E)
-    local m, i, j, k, CombE, NCombE, U, UU;
-    m:=Length(E);
-    U:=[];
-    for i in [1..m] do
-        U:=ShallowCopy(Union(U,E[i]));
-    od;
-    if 2*m = Length(U)-1 then
-        Print("H is a hypertree \n");
-    else
-        Print("H is not a hypertree \n");
-        for j in [2..m] do
-            CombE :=Combinations( E, j);
-            NCombE := NrCombinations( E, j);
-            for k in [1..NCombE] do
-                UU:=CombE[k][1];
-                for i in [2..j] do
-                    UU:=ShallowCopy(Union(UU,CombE[k][i]));
-                od;
-                    if Length(UU) = 2*i then
-                        Print("H has girth ", i," \n");
-                        Print("Edges ", CombE[k], "\n");
-                        return;
-                    fi;                
-            od;
-        od;
-    fi;
-end;
+# HGirth :=function( E)
+#     local m, i, j, k, CombE, NCombE, U, UU;
+#     m:=Length(E);
+#     U:=[];
+#     for i in [1..m] do
+#         U:=ShallowCopy(Union(U,E[i]));
+#     od;
+#     if 2*m = Length(U)-1 then
+#         Print("H is a hypertree \n");
+#     else
+#         Print("H is not a hypertree \n");
+#         for j in [2..m] do
+#             CombE :=Combinations( E, j);
+#             NCombE := NrCombinations( E, j);
+#             for k in [1..NCombE] do
+#                 UU:=CombE[k][1];
+#                 for i in [2..j] do
+#                     UU:=ShallowCopy(Union(UU,CombE[k][i]));
+#                 od;
+#                     if Length(UU) = 2*i then
+#                         Print("H has girth ", i," \n");
+#                         Print("Edges ", CombE[k], "\n");
+#                         return;
+#                     fi;                
+#             od;
+#         od;
+#     fi;
+# end;
+
 # HH:=[[1,2,3],[3,4,5],[5,6,7],[7,8,9],[9,10,11],[11,12,13],[13,14,15],[15,16,17],[17,18,19],[19,20,21],[21,22,23],[23,24,25],[1,25,#26],[1,27,28],[3,29,30]];
 
 # HH:=[[1,2,3],[3,4,5],[5,6,7],[7,8,9],[9,10,11],[11,12,13],[13,14,15],[15,16,17],[17,18,19],[19,20,21],[21,22,23],[23,24,25],[1,25,#26],[1,27,28],[3,29,30],[11,31,32],[12,33,34],[34,35,36],[23,37,38]]; time: 9 645 ms
@@ -340,50 +341,50 @@ GenerateRandomHypergraph :=function( n )
     return edges;
 end;
 
-KSSubsetLexUnrank :=function( n,r )
-    local T, i;
-    T := [];
-    for i in [n,n-1..1] do
-        if r mod 2 = 1 then
-            Add(T,i);
-        fi;
-        r := Int(r/2);
-    od;
-    return Reversed(T);
-end;
+# KSSubsetLexUnrank :=function( n,r )
+#     local T, i;
+#     T := [];
+#     for i in [n,n-1..1] do
+#         if r mod 2 = 1 then
+#             Add(T,i);
+#         fi;
+#         r := Int(r/2);
+#     od;
+#     return Reversed(T);
+# end;
 
-KSkSubsetLexRank :=function( T, k, n )
-    local U, r, i, j;
-    U := [];
-    r := 0;
-    U[1] := 0;
-    for i in [2..Length(T)+1] do
-        U[i] := T[i-1];
-    od;
-    for i in [1..k] do
-        if U[i] + 1 <= U[i+1] - 1 then
-            for j in [U[i]+1..U[i+1]-1] do
-                r := r + NrCombinations([1..n-j],k-i);
-            od;
-        fi;
-    od;
-    return r;
-end;
+# KSkSubsetLexRank :=function( T, k, n )
+#     local U, r, i, j;
+#     U := [];
+#     r := 0;
+#     U[1] := 0;
+#     for i in [2..Length(T)+1] do
+#         U[i] := T[i-1];
+#     od;
+#     for i in [1..k] do
+#         if U[i] + 1 <= U[i+1] - 1 then
+#             for j in [U[i]+1..U[i+1]-1] do
+#                 r := r + NrCombinations([1..n-j],k-i);
+#             od;
+#         fi;
+#     od;
+#     return r;
+# end;
 
-KSkSubsetLexUnrank :=function( r, k, n )
-    local x, T, i, comb;
-    T := [];
-    x := 1;
-    for i in [1..k] do
-        while n-x>=k-i and NrCombinations([1..n-x], k-i) <= r do
-            r := r - NrCombinations([1..n-x], k-i);
-            x := x+1;
-        od;
-        T[i] := x;
-        x := x+1;
-    od;
-    return T;
-end;
+# KSkSubsetLexUnrank :=function( r, k, n )
+#     local x, T, i, comb;
+#     T := [];
+#     x := 1;
+#     for i in [1..k] do
+#         while n-x>=k-i and NrCombinations([1..n-x], k-i) <= r do
+#             r := r - NrCombinations([1..n-x], k-i);
+#             x := x+1;
+#         od;
+#         T[i] := x;
+#         x := x+1;
+#     od;
+#     return T;
+# end;
 
 HLinear :=function ( E )
     local aux, i, j, k, a, RR;

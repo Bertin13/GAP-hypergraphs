@@ -464,3 +464,16 @@ end);
 ##  <#/GAPDoc>
 InstallMethod( IsConnected, "for hypergraphs", [ IsHHypergraph ], IsConnected@ );
 
+HDual@ := function( H )
+    local vert, ioe, eds;
+    ioe := IndexOfEdges(H);
+    eds := [];
+    for vert in Vertices(H) do
+        Add(eds,ioe.(vert));
+    od;
+    return HHypergraph(eds);
+end;
+
+#F  HDual( H )
+##
+InstallGlobalFunction( HDual, HDual@ );
